@@ -5,7 +5,9 @@ export default function Layouts() {
   return (
     <>
       <Header />
-      <Outlet />
+      <main className='container mx-auto py-16'>
+        <Outlet />
+      </main>
     </>
   );
 }
