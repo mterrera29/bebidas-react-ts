@@ -7,7 +7,11 @@ export default function Header() {
 
   console.log(isHome);
   return (
-    <header className=' bg-slate-800'>
+    <header
+      className={
+        isHome ? 'bg-[url(/bg.jpg)] bg-cover bg-center' : 'bg-slate-800'
+      }
+    >
       <div className=' mx-auto container px-5 py-16'>
         <div className='flex justify-between items-center'>
           <div>
@@ -37,7 +41,7 @@ export default function Header() {
           </nav>
         </div>
         {isHome && (
-          <form className='md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6'>
+          <form className='md:w-1/2 2xl:w-1/3 bg-linear-to-t from-orange-400 to-orange-600 my-32 p-10 rounded-lg shadow space-y-6'>
             <div className='space-y-4'>
               <label
                 htmlFor='ingredient'
