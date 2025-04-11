@@ -1,11 +1,19 @@
 import { NavLink, useLocation } from 'react-router-dom';
+import { useAppStore } from '../stores/useAppStore';
+import { useEffect } from 'react';
 
 export default function Header() {
   const { pathname } = useLocation();
 
   const isHome = pathname === '/';
 
-  console.log(isHome);
+  const fetchCategories = useAppStore((state) => state.fetchCategories);
+  const categories = useAppStore((state) => state.categories);
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
   return (
     <header
       className={
@@ -69,6 +77,11 @@ export default function Header() {
                 className='p-3 w-full rounded-lg focus:outline-none bg-amber-50'
               >
                 <option value=''>-- Seleccione --</option>
+                {categories.drinks.map((cat) => (
+                  <option key={cat.strCategory} value={cat.strCategory}>
+                    {cat.strCategory}
+                  </option>
+                ))}
               </select>
             </div>
             <input
