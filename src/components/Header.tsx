@@ -34,7 +34,7 @@ export default function Header() {
       console.log('todos los capos son obligatorios');
       return;
     }
-    searchRecipes();
+    searchRecipes(searchFilter);
   };
 
   return (
