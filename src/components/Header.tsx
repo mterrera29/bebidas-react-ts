@@ -1,8 +1,12 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAppStore } from '../stores/useAppStore';
-import { useEffect } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 export default function Header() {
+  const [searchFilter, setSearchFilters] = useState({
+    ingredient: '',
+    category: '',
+  });
   const { pathname } = useLocation();
 
   const isHome = pathname === '/';
@@ -13,6 +17,15 @@ export default function Header() {
   useEffect(() => {
     fetchCategories();
   }, []);
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSearchFilters({
+      ...searchFilter,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   return (
     <header
@@ -62,19 +75,24 @@ export default function Header() {
                 type='text'
                 className='p-3 w-full rounded-lg focus:outline-none bg-amber-50'
                 placeholder='Nombre o Ingrediente. Ej. Vodka, Tequila, Café'
+                name='ingredient'
+                onChange={handleChange}
+                value={searchFilter.ingredient}
               />
             </div>
             <div className='space-y-4'>
               <label
-                htmlFor='ingredient'
+                htmlFor='category'
                 className=' block text-white uppercase font-extrabold text-lg'
               >
                 Categoría
               </label>
               <select
-                id='ingredient'
-                name='ingredient'
+                id='category'
+                name='category'
                 className='p-3 w-full rounded-lg focus:outline-none bg-amber-50'
+                onChange={handleChange}
+                value={searchFilter.category}
               >
                 <option value=''>-- Seleccione --</option>
                 {categories.drinks.map((cat) => (
