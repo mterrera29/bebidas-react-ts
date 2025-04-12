@@ -7,3 +7,8 @@ export const CategoriesAPIResponseSchema = z.object({
     })
   ),
 });
+
+export const SearchRecipeSchema = z.object({
+  ingredient: z.string(),
+  category: z.string(),
+});

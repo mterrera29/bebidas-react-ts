@@ -1,6 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAppStore } from '../stores/useAppStore';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 export default function Header() {
   const [searchFilter, setSearchFilters] = useState({
@@ -13,6 +13,7 @@ export default function Header() {
 
   const fetchCategories = useAppStore((state) => state.fetchCategories);
   const categories = useAppStore((state) => state.categories);
+  const searchRecipes = useAppStore((state) => state.searchRecipes);
 
   useEffect(() => {
     fetchCategories();
@@ -25,6 +26,15 @@ export default function Header() {
       ...searchFilter,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (Object.values(searchFilter).includes('')) {
+      console.log('todos los capos son obligatorios');
+      return;
+    }
+    searchRecipes();
   };
 
   return (
@@ -62,7 +72,10 @@ export default function Header() {
           </nav>
         </div>
         {isHome && (
-          <form className='md:w-1/2 2xl:w-1/3 bg-linear-to-t from-orange-400 to-orange-600 my-32 p-10 rounded-lg shadow space-y-6'>
+          <form
+            className='md:w-1/2 2xl:w-1/3 bg-linear-to-t from-orange-400 to-orange-600 my-32 p-10 rounded-lg shadow space-y-6'
+            onSubmit={handleSubmit}
+          >
             <div className='space-y-4'>
               <label
                 htmlFor='ingredient'

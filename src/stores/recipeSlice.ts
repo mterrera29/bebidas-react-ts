@@ -5,6 +5,7 @@ import { Categories } from '../types';
 export type RecipeSliceType = {
   categories: Categories;
   fetchCategories: () => Promise<void>;
+  searchRecipes: () => Promise<void>;
 };
 
 export const createRecipeSlice: StateCreator<RecipeSliceType> = (set) => ({
@@ -16,5 +17,8 @@ export const createRecipeSlice: StateCreator<RecipeSliceType> = (set) => ({
     set({
       categories: categories,
     });
+  },
+  searchRecipes: async () => {
+    console.log('desderecipes');
   },
 });
