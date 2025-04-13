@@ -67,7 +67,7 @@ export default function Header() {
               }
               to='/favorites'
             >
-              Favoritos
+              Bebidas Favoritas
             </NavLink>
           </nav>
         </div>
