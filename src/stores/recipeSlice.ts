@@ -34,6 +34,7 @@ export const createRecipeSlice: StateCreator<RecipeSliceType> = (set) => ({
     });
   },
   selectRecipe: async (id) => {
-    const drink = await getRecipeById(id);
+    const selectedRecipe = await getRecipeById(id);
+    console.log(selectedRecipe);
   },
 });
