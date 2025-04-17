@@ -3,7 +3,7 @@ import {
   CategoriesAPIResponseSchema,
   DrinksArrayAPIResponse,
 } from '../utils/recipes-schema';
-import { SearchFilter } from '../types';
+import { Drink, SearchFilter } from '../types';
 
 export const getCategories = async () => {
   const url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
@@ -54,4 +54,8 @@ export async function getFiltersFetch(searchFilter: SearchFilter) {
     .catch((err) => console.error(err));
   console.log(response);
   return await response;
+}
+
+export async function getRecipeById(id: Drink['idDrink']) {
+  console.log(id);
 }
