@@ -14,6 +14,8 @@ export default function Modal() {
   const closeModal = useAppStore((state) => state.closeModal);
   const selectedRecipe = useAppStore((state) => state.selectedRecipe);
   const handleClickFavorite = useAppStore((state) => state.handleClickFavorite);
+  const favorites = useAppStore((state) => state.favorites);
+  const isFavorite = favorites.includes(selectedRecipe);
 
   const renderIngredients = () => {
     const ingredients: JSX.Element[] = [];
@@ -64,7 +66,7 @@ export default function Modal() {
                 <p className='mt-2 text-sm/6 text-black'>
                   {selectedRecipe.strInstructions}
                 </p>
-                <div className='mt-4'>
+                <div className='mt-4 space-x-2'>
                   <Button
                     className='inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[focus]:outline-1 data-[focus]:outline-white data-[open]:bg-gray-700'
                     onClick={closeModal}
@@ -75,7 +77,9 @@ export default function Modal() {
                     className='inline-flex items-center gap-2 rounded-md bg-orange-400 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-orange-600 data-[focus]:outline-1 data-[focus]:outline-white data-[open]:bg-gray-700'
                     onClick={() => handleClickFavorite(selectedRecipe)}
                   >
-                    Agregar a favoritos
+                    {isFavorite
+                      ? 'Agregar a favoritos'
+                      : 'Eliminar de favoritos'}
                   </Button>
                 </div>
               </DialogPanel>
