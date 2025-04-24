@@ -8,7 +8,7 @@ type DrinkCardProps = {
 export default function DrinkCard({ drink }: DrinkCardProps) {
   const selectRecipe = useAppStore((select) => select.selectRecipe);
   return (
-    <div className='border shadow-lg'>
+    <div className='border shadow-lg max-w-[350px]'>
       <div className=' overflow-hidden'>
         <img
           src={drink.strDrinkThumb}
