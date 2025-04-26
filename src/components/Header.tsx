@@ -71,7 +71,17 @@ export default function Header() {
               }
               to='/favorites'
             >
-              Bebidas Favoritas
+              Favoritos
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? ' text-orange-400 uppercase text-2xl'
+                  : 'text-white uppercase text-2xl'
+              }
+              to='/ia'
+            >
+              Generar con IA
             </NavLink>
           </nav>
         </div>

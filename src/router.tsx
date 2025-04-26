@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layouts from './layouts/Layouts';
+import GenerateAI from './views/GenerateAI';
 
 const FavoritesRoute = lazy(() => import('./views/FavoritesRoute'));
 const IndexPage = lazy(() => import('./views/IndexPage'));
@@ -24,6 +25,14 @@ export default function AppRouter() {
             element={
               <Suspense>
                 <FavoritesRoute />
+              </Suspense>
+            }
+          />
+          <Route
+            path='/ai'
+            element={
+              <Suspense>
+                <GenerateAI />
               </Suspense>
             }
           />
