@@ -2,6 +2,8 @@ import { useAppStore } from '../stores/useAppStore';
 
 export default function GenerateAI() {
   const showNotification = useAppStore((state) => state.showNotification);
+  const generateRecipe = useAppStore((state) => state.generateRecipe);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -13,6 +15,7 @@ export default function GenerateAI() {
       });
       return;
     }
+    generateRecipe(prompt);
   };
   return (
     <>
